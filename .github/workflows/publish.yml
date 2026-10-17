@@ -1,0 +1,51 @@
+name: Publish prerelease
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    # Dispatch only against a reviewed prerelease tag, never an arbitrary branch.
+    if: startsWith(github.ref, 'refs/tags/v') && contains(github.ref, 'rc')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ec52d0af729a7c50ced4261d17a07916f43f5b8e
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev,api,xai]'
+      - name: Verify tag matches package version
+        run: python -c "import os, tokenpropulsion; assert os.environ['GITHUB_REF_NAME'] == 'v' + tokenpropulsion.__version__"
+      - run: python -m ruff check .
+      - run: python -m ruff format --check .
+      - run: python -m mypy
+      - run: python -m pytest --cov=tokenpropulsion --cov-report=term-missing
+      - run: python -m bandit -r src
+      - run: python -m pip_audit
+      - run: python scripts/secret_scan.py
+      - run: python scripts/check_benchmark.py
+      - run: python scripts/check_whitepaper.py
+      - run: python -m build
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: distributions
+          path: dist/
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - name: Download distributions
+        # Avoid an extra third-party action by fetching this run's artifact with gh.
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: gh run download "$RUN_ID" --name distributions --dir dist
+      - uses: pypa/gh-action-pypi-publish@f68fee44f9faa979857cda34894b750df5f571ca

@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "native_dimensions": [
+    1672,
+    941
+  ],
+  "delivery_dimensions": [
+    7680,
+    4320
+  ],
+  "aspect_ratio": "16:9",
+  "delivery_method": "high-quality bicubic export using .NET System.Drawing",
+  "native_8k": false,
+  "prompt_file": "image-generation-prompt.txt",
+  "purpose": "editorial repository illustration, not a performance chart",
+  "sha256": {
+    "tokenpropulsion-hero-8k.png": "3e9507d66f52171c1cccbe9f9df519d78568e5e8c6bcfe131172da596758ad70",
+    "tokenpropulsion-hero-native.png": "94f9bb67fd9d62ea0c010fa3d4a95c8fbdf6ddb483541723f73e1588417603e0",
+    "tokenpropulsion-hero-preview.jpg": "4a74539c96e4e20d1db9c3a2762ec78eea1a60d600251ea60f762825f7ce779a"
+  }
+}

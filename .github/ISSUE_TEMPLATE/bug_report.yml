@@ -1,0 +1,20 @@
+name: Bug report
+description: Reproducible behavior or safety failure
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal synthetic reproduction
+      description: Never include API keys or private prompts. Report vulnerabilities privately.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Python, OS, package version, and optional SDK version

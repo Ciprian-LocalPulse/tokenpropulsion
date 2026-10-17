@@ -1,0 +1,9 @@
+{
+  "body_word_count": 10000,
+  "count_method": "nonempty whitespace-delimited tokens between WORD_COUNT markers, including headings and citations",
+  "front_matter_and_references_counted": false,
+  "pages": 23,
+  "page_boundary_issues": 0,
+  "text_presence_checks": "author, final section, final paragraph passed",
+  "rendering": "all pages rasterized with Poppler for visual review"
+}

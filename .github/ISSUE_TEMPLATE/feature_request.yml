@@ -1,0 +1,13 @@
+name: Feature request
+description: Propose a use case with validation requirements
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and measurable success criteria
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Safety boundaries and evaluation fixtures

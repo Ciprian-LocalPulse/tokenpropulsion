@@ -1,0 +1,42 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ec52d0af729a7c50ced4261d17a07916f43f5b8e
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e '.[dev,api,xai]'
+      - run: python -m ruff check .
+      - run: python -m ruff format --check .
+      - run: python -m mypy
+      - run: python -m pytest --cov=tokenpropulsion --cov-report=term-missing --cov-report=xml
+      - run: python scripts/check_benchmark.py
+      - run: python scripts/check_whitepaper.py
+      - run: python -m build
+      - name: Fresh dependency-free wheel smoke test
+        shell: bash
+        run: |
+          python -m venv /tmp/tp-smoke
+          /tmp/tp-smoke/bin/pip install --no-deps dist/*.whl
+          /tmp/tp-smoke/bin/tokenpropulsion --help
+          /tmp/tp-smoke/bin/python -c 'from tokenpropulsion import compress_prompt; assert compress_prompt("Hello.   ").optimized_text == "Hello."'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: validation-${{ matrix.python }}
+          path: |
+            coverage.xml
+            dist/

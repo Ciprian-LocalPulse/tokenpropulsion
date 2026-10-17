@@ -1,0 +1,10 @@
+Input: 'Explain stars.\n\n\nUse simple language.'
+Output: 'Explain stars.\n\nUse simple language.'
+Tokenizer: estimate:utf8-bytes/4 exact: False
+Estimated savings %: 10.0
+Semantic equivalence assessed: False
+Input: 'Return JSON: {"ok":true}  '
+Output: 'Return JSON: {"ok":true}  '
+Tokenizer: estimate:utf8-bytes/4 exact: False
+Estimated savings %: 0.0
+Semantic equivalence assessed: False

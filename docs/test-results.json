@@ -1,0 +1,12 @@
+{
+  "tests": "191",
+  "failures": "0",
+  "errors": "0",
+  "skipped": "0",
+  "time": "7.662",
+  "python": "3.12.14",
+  "os": "Windows x64",
+  "line_coverage_percent": 99.60861056751467,
+  "line_and_branch_coverage_percent": 99.54476479514416,
+  "warning": "Starlette deprecates the httpx TestClient transport; tests passed."
+}

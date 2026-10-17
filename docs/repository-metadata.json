@@ -1,0 +1,9 @@
+{
+  "name": "tokenpropulsion",
+  "description": "Less input. Measurable savings. Verified behavior. Independent prompt formatting and evaluation for Python.",
+  "topics": ["python", "llm", "prompt-optimization", "tokenization", "grok"],
+  "license": "MIT",
+  "visibility": "public",
+  "version": "1.0.0rc1",
+  "author": "Ciprian Ștefan Pleșca"
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="200" viewBox="0 0 960 200" role="img" aria-labelledby="title desc">
+<title id="title">TokenPropulsion architecture</title>
+<desc id="desc">Input flows through protection, formatting, validation, and an auditable result.</desc>
+<rect width="960" height="200" fill="#101827"/>
+<text x="32" y="48" fill="#f8fafc" font-family="sans-serif" font-size="27">TokenPropulsion</text>
+<text x="32" y="80" fill="#a5b4fc" font-family="sans-serif" font-size="18">Less input. Measurable savings. Verified behavior.</text>
+<g fill="#e2e8f0" font-family="monospace" font-size="18">
+<text x="32" y="142">Input → Protection → Formatting → Validation → Audit result</text>
+</g><text x="32" y="177" fill="#94a3b8" font-family="sans-serif" font-size="15">Offline by default · Original-text fallback · Semantic equivalence unassessed</text>
+</svg>

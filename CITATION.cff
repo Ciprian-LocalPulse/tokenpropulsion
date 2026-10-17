@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this software and its engineering whitepaper when using the project."
+type: software
+title: "TokenPropulsion: Auditable Prompt Formatting and Evidence-Bounded Optimization"
+version: 1.0.0rc1
+date-released: 2026-10-17
+url: "https://github.com/Ciprian-LocalPulse/tokenpropulsion"
+license: MIT
+authors:
+  - family-names: "Pleșca"
+    given-names: "Ciprian Ștefan"

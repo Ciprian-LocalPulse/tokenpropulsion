@@ -1,0 +1,10 @@
+{
+  "environment": "fresh virtual environment, no optional runtime dependencies",
+  "checks_passed": [
+    "installed_python_api",
+    "installed_cli_help",
+    "cli_stdout_stderr_separation",
+    "binary_stdin_stdout_crlf_identity",
+    "file_crlf_identity"
+  ]
+}
