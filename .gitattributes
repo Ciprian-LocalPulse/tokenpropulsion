@@ -4,3 +4,6 @@
 *.pdf binary
 *.whl binary
 *.gz binary
+
+# Preserve dataset serialization for byte-identical benchmark hashes.
+benchmarks/datasets/*.jsonl -text
