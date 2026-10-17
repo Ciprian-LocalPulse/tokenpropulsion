@@ -42,7 +42,7 @@ opentelemetry-api==1.45.1
 opentelemetry-sdk==1.45.1
 opentelemetry-semantic-conventions==0.66b1
 packageurl-python==0.17.6
-packaging==25.0
+packaging==26.3
 pathspec==1.1.1
 pip-requirements-parser==32.0.1
 pip==26.2.1
