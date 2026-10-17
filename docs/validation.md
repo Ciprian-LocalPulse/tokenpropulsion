@@ -1,7 +1,8 @@
 # Executed validation — 2026-10-17
 
 Release candidate: **1.0.0rc1**. Validated locally on Windows x64, Python 3.12.14.
-No hosted CI or live xAI success is claimed.
+The original local snapshot below predates public CI. Live xAI success is not claimed.
+The hosted validation supplement records the subsequently executed public checks.
 
 | Gate | Executed result |
 | --- | --- |
@@ -28,8 +29,8 @@ it is a Windows/Python 3.12 snapshot, not a portable lock file.
 
 ## Qualifications and outstanding release gates
 
-- Tests ran on Python 3.12 only. CI is configured for 3.10–3.14; those hosted jobs have
-  not been run. Syntax parsing is not runtime compatibility testing.
+- Local tests ran on Python 3.12. The initial public hosted matrix subsequently passed
+  on Python 3.10-3.14. Syntax parsing alone is not runtime compatibility testing.
 - xai-sdk **1.20.0** real SDK signatures and usage protobuf fields were inspected
   and exercised through mocks. XAI_API_KEY was absent. No provider calls were made;
   live authentication, model support, tokenization, retry behavior, quality, billing,
@@ -73,3 +74,16 @@ was used with workspace-local virtual environments. Windows sandbox restrictions
 asyncio's local socketpair and default temporary directories. Offline/mocked integration
 tests passed outside that sandbox with a workspace temporary directory. These failures
 were environmental; no external model endpoint was contacted to work around them.
+
+
+## Hosted validation supplement
+
+Public source commit `bcef50652c1381840cfa62a19db276d27c9fed8f` completed:
+
+- [CI: Python 3.10, 3.11, 3.12, 3.13, and 3.14](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions/runs/39001323055): success for all five jobs, including tests, lint, typing, build, and fresh wheel smoke checks.
+- [Security](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions/runs/39001322777): success.
+
+Later commits preserve JSONL serialization and enforce the published benchmark hash.
+Their run results are visible in [current Actions](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions).
+A successful initial run does not imply that uncompleted later runs have passed.
+The first GitHub release remains 1.0.0rc1 because live provider behavior is unverified.

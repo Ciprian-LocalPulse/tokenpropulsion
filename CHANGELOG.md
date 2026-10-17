@@ -7,7 +7,7 @@ estimated offline token accounting, CLI, authenticated optional API, official op
 xAI sync/async integration and remote text tokenization, synthetic evaluation fixtures,
 repeated remote experiments, CI/security/publishing preparation, and MIT documentation.
 
-Live xAI behavior and hosted CI are not verified. No production-ready or model quality
+Live xAI behavior is not verified. Hosted CI and Security passed for the initial public source. No production-ready or model quality
 claims are made. See docs/validation.md for executed local checks.
 
 ### Public release preparation

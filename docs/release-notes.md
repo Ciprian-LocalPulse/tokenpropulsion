@@ -7,7 +7,8 @@ official xAI SDK adapter, and reproducible local/explicit remote benchmark tooli
 
 Formatting invariants are tested; semantic equivalence is not assessed. Default counts
 are estimates. No live xAI quality, cost, or latency benchmark is claimed. Live provider
-compatibility and hosted CI remain release limitations; see validation.md.
+compatibility remains unverified. The initial public hosted matrix and Security checks
+passed; see validation.md and the linked current Actions runs.
 
 
 ## Public presentation and research documentation

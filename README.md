@@ -13,7 +13,8 @@
 
 A dependency-free Python core for auditable prompt formatting, with optional official
 xAI SDK integration, an authenticated REST service, and reproducible evaluation tools.
-**Release candidate:** live xAI behavior and the hosted CI matrix are unverified.
+**Release candidate:** live xAI behavior remains unverified. The first hosted CI
+matrix passed on Python 3.10-3.14; current results are linked below.
 Hosted CI results are available in [GitHub Actions](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions).
 The 8K artwork is an upscaled export; [asset provenance](assets/README.md) records native dimensions.
 

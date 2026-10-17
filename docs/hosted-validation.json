@@ -1,0 +1,20 @@
+{
+  "baseline_commit": "bcef50652c1381840cfa62a19db276d27c9fed8f",
+  "ci": {
+    "run_id": 39001323055,
+    "conclusion": "success",
+    "python_versions": [
+      "3.10",
+      "3.11",
+      "3.12",
+      "3.13",
+      "3.14"
+    ]
+  },
+  "security": {
+    "run_id": 39001322777,
+    "conclusion": "success"
+  },
+  "scope": "first public source; later run status must be checked separately",
+  "live_xai_verified": false
+}
