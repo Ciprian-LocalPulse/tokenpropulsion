@@ -200,6 +200,7 @@ def test_optional_local_model_backend(monkeypatch, tmp_path):
     class Model:
         def __init__(self, path, **kwargs):
             assert kwargs["local_files_only"] and not kwargs["trust_remote_code"]
+            assert kwargs["model_kwargs"] == {"use_safetensors": True}
 
         def encode(self, sentences, **kwargs):
             return SimpleNamespace(

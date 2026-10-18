@@ -85,6 +85,7 @@ class SentenceTransformerBackend:
             model_path,
             local_files_only=True,
             trust_remote_code=False,
+            model_kwargs={"use_safetensors": True},
         )
         self.threshold = threshold
         self.identity = "sentence-transformers:local-unverified"
