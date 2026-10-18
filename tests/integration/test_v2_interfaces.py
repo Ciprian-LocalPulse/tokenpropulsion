@@ -216,9 +216,11 @@ def test_schema_huge_integer_and_nonfinite():
 
 
 def test_api_body_timeout_is_sanitized(monkeypatch):
+    import asyncio
+
     async def expired(coroutine, timeout):
         coroutine.close()
-        raise TimeoutError
+        raise asyncio.TimeoutError
 
     monkeypatch.setattr("tokenpropulsion.api.app.asyncio.wait_for", expired)
     token = "test-token-with-at-least-thirty-two-characters"

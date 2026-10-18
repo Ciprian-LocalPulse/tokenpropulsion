@@ -20,6 +20,11 @@ checked. The original v1 paper still passes its exact 10,000-word-body check. PD
 can differ in metadata/timestamps; release checksums verify distributed bytes.
 Hosted CI results must be checked against the exact release commit before publication.
 
+The first hosted Python 3.10 run exposed a test compatibility issue: builtin
+TimeoutError is distinct from asyncio.TimeoutError before Python 3.11. The simulated
+deadline now raises asyncio.TimeoutError, matching the implementation's handler.
+No service behavior was weakened; the final hosted matrix is rerun before tagging.
+
 
 Review scope: internal second-pass engineering review of final code and actual outputs;
 not external independent certification, peer review or production approval.
