@@ -1,0 +1,92 @@
+{
+  "deployment_url": "https://ciprian-localpulse.github.io/tokenpropulsion-site/",
+  "external_links": [
+    {
+      "url": "https://ciprian-localpulse.github.io/tokenpropulsion-site/",
+      "status": 200,
+      "final_url": "https://ciprian-localpulse.github.io/tokenpropulsion-site/"
+    },
+    {
+      "url": "https://ciprian-localpulse.github.io/tokenpropulsion-site/assets/video-poster.jpg",
+      "status": 200,
+      "final_url": "https://ciprian-localpulse.github.io/tokenpropulsion-site/assets/video-poster.jpg"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion#installation-and-examples",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion#installation-and-examples"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion-site",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion-site"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/AUDIT/BENCHMARK_METHODOLOGY.md",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/AUDIT/BENCHMARK_METHODOLOGY.md"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/AUDIT/FINAL_TECHNICAL_AUDIT.md",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/AUDIT/FINAL_TECHNICAL_AUDIT.md"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/benchmarks/results/v2.0.0a1/optimized.json",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/benchmarks/results/v2.0.0a1/optimized.json"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/docs/research-v2.md",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/docs/research-v2.md"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/docs/whitepaper/TokenPropulsion-Whitepaper-v2.0.0a1.pdf",
+      "status": 200,
+      "final_url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/v2.0.0a1/docs/whitepaper/TokenPropulsion-Whitepaper-v2.0.0a1.pdf"
+    },
+    {
+      "url": "https://github.com/Ciprian-LocalPulse/tokenpropulsion/issues/new?title=Commercial%20evaluation%20inquiry",
+      "status": 200,
+      "final_url": "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2FCiprian-LocalPulse%2Ftokenpropulsion%2Fissues%2Fnew%3Ftitle%3DCommercial%2520evaluation%2520inquiry"
+    }
+  ],
+  "deployed_resource_checks": [
+    {
+      "resource": "index.html",
+      "sha256": "ee3ce7475ce620d6c8d56e66a1ad4e3370e76cf8b84de067e96d9f4ef02fec88",
+      "matches_public_git_blob": true
+    },
+    {
+      "resource": "data/examples.json",
+      "sha256": "7bae7ec01d366974000995cc11f703bdb626df4c8cf9e882fc6a5a2276ed60df",
+      "matches_public_git_blob": true
+    },
+    {
+      "resource": "assets/tokenpropulsion-demo-16x9.mp4",
+      "sha256": "076546c35f449f8427c563d101546885c720ac77b87f049e37ba0ffb87a99bd9",
+      "matches_public_git_blob": true
+    },
+    {
+      "resource": "assets/tokenpropulsion-demo-9x16.mp4",
+      "sha256": "a0312173730714ae39a498433d316512f12864b85d5490c5116fce7fe453eb7d",
+      "matches_public_git_blob": true
+    },
+    {
+      "resource": "assets/captions-en.vtt",
+      "sha256": "3661e5751bafe3f48a45a4520882f32b10b26c66b680f4cb030ab8bf50693c9b",
+      "matches_public_git_blob": true
+    }
+  ]
+}

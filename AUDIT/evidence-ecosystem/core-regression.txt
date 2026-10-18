@@ -1,0 +1,16 @@
+........................................................................ [ 26%]
+........................................................................ [ 52%]
+........................................................................ [ 79%]
+........................................................                 [100%]
+============================== warnings summary ===============================
+..\..\work\venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\saint\Documents\Codex\2026-10-17\files-pasted-by-the-user-codex\work\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.14-final-0 _______________
+
+Coverage JSON written to file ../../work/enterprise-baseline-coverage.json
+Required test coverage of 90.0% reached. Total coverage: 95.44%
+272 passed, 1 warning in 12.46s

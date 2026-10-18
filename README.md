@@ -5,6 +5,8 @@
 [![CI](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions/workflows/ci.yml/badge.svg)](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue) ![MIT](https://img.shields.io/badge/license-MIT-green) ![Alpha](https://img.shields.io/badge/version-2.0.0a1-orange)
 
+[Live recorded demonstration](https://ciprian-localpulse.github.io/tokenpropulsion-site/#demo) · [35-second technical video](https://ciprian-localpulse.github.io/tokenpropulsion-site/assets/tokenpropulsion-demo-16x9.mp4) · [Ecosystem audit](AUDIT/ECOSYSTEM_FINAL_REPORT.md)
+
 Auditable prompt compression with a dependency-free Python core, explicit task contracts,
 conservative fallback, and optional xAI, REST, tokenizer and local embedding integrations.
 **Research alpha: not production ready.** No live xAI study has been executed.

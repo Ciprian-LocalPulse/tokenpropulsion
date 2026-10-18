@@ -1,0 +1,15 @@
+{
+  "scope": "tracked public Core/site files and allowlisted static host bundle",
+  "public_tracked_file_counts": {
+    "tokenpropulsion": 137,
+    "tokenpropulsion-site": 49
+  },
+  "private_content_hash_comparison": "no copied private source/business documents detected",
+  "private_import_ast_check": "none",
+  "private_dashboard_event_ids_in_public_bundle": false,
+  "high_confidence_credential_findings": 0,
+  "private_repository_url_in_host_bundle": false,
+  "secret_scanning_limit": "pattern scanning cannot prove absence of every secret",
+  "live_provider_calls": false,
+  "third_party_certification": false
+}
