@@ -6,6 +6,7 @@ import time
 from dataclasses import dataclass
 from typing import Any
 
+from ..budget import RequestBudget
 from ..compressor import compress_prompt
 from ..exceptions import InputError, ProviderError
 from ..security import authorize_network
@@ -19,6 +20,9 @@ class ProviderResult:
     total_tokens: int
     remote_seconds: float
     model: str
+    cached_input_tokens: int | None = None
+    reported_cost_usd: float | None = None
+    time_to_first_token_seconds: float | None = None
 
 
 def _retryable(error: Exception) -> bool:
@@ -35,6 +39,9 @@ def _retryable(error: Exception) -> bool:
 
 def _result(response: Any, start: float, model: str) -> ProviderResult:
     usage = response.usage
+    from xai_sdk.cost import cost_usd_from_usage
+
+    cost = cost_usd_from_usage(usage) if hasattr(usage, "HasField") else None
     return ProviderResult(
         response.content,
         int(usage.prompt_tokens),
@@ -42,6 +49,10 @@ def _result(response: Any, start: float, model: str) -> ProviderResult:
         int(usage.total_tokens),
         time.perf_counter() - start,
         model,
+        int(usage.cached_prompt_text_tokens)
+        if hasattr(usage, "cached_prompt_text_tokens")
+        else None,
+        cost,
     )
 
 
@@ -60,6 +71,9 @@ class XAIAdapter:
         allow_sensitive: bool = False,
         timeout: float = 60,
         max_retries: int = 0,
+        max_output_tokens: int = 1024,
+        temperature: float = 0,
+        budget: RequestBudget | None = None,
     ) -> None:
         if (
             not isinstance(model, str)
@@ -69,6 +83,15 @@ class XAIAdapter:
             or not 0 <= max_retries <= 3
         ):
             raise InputError("model, timeout (0,3600], and retries [0,3] required")
+        if (
+            type(max_output_tokens) is not int
+            or not 1 <= max_output_tokens <= 8192
+            or not 0 <= temperature <= 2
+        ):
+            raise InputError("output cap [1,8192] and temperature [0,2] required")
+        self.max_output_tokens = max_output_tokens
+        self.temperature = temperature
+        self.budget = budget
         self.model = model
         self.allow_network = allow_network
         self.allow_sensitive = allow_sensitive
@@ -94,8 +117,8 @@ class XAIAdapter:
         chat = client.chat.create(
             model=self.model,
             store_messages=False,
-            max_tokens=1024,
-            temperature=0,
+            max_tokens=self.max_output_tokens,
+            temperature=self.temperature,
         )
         chat.append(user(text))
         return chat
@@ -104,9 +127,14 @@ class XAIAdapter:
         self._authorize(text)
         start = time.perf_counter()
         for attempt in range(self.max_retries + 1):
+            if self.budget is not None:
+                self.budget.reserve()
             try:
                 with self._client() as client:
-                    return _result(self._chat(client, text).sample(), start, self.model)
+                    result = _result(self._chat(client, text).sample(), start, self.model)
+                    if self.budget is not None:
+                        self.budget.observe(result.reported_cost_usd)
+                    return result
             except Exception as error:
                 if attempt < self.max_retries and _retryable(error):
                     time.sleep(min(2**attempt, 4))
@@ -118,10 +146,15 @@ class XAIAdapter:
         self._authorize(text)
         start = time.perf_counter()
         for attempt in range(self.max_retries + 1):
+            if self.budget is not None:
+                self.budget.reserve()
             try:
                 async with self._client(True) as client:
                     response = await self._chat(client, text).sample()
-                    return _result(response, start, self.model)
+                    result = _result(response, start, self.model)
+                    if self.budget is not None:
+                        self.budget.observe(result.reported_cost_usd)
+                    return result
             except Exception as error:
                 if attempt < self.max_retries and _retryable(error):
                     await asyncio.sleep(min(2**attempt, 4))
@@ -161,6 +194,7 @@ class XAITokenizer:
     """
 
     exact = True
+    count_kind = "provider-exact"
 
     def __init__(self, adapter: XAIAdapter) -> None:
         self.adapter = adapter

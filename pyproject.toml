@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tokenpropulsion"
-version = "1.0.0rc1"
+version = "2.0.0a1"
 description = "Less input. Measurable savings. Verified behavior."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{name = "Ciprian Ștefan Pleșca"}]
 keywords = ["llm", "prompt", "optimization", "grok", "tokenization"]
-classifiers = ["Development Status :: 4 - Beta", "Programming Language :: Python :: 3", "Operating System :: OS Independent"]
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Operating System :: OS Independent"]
 dependencies = []
 
 [project.urls]
@@ -21,15 +21,21 @@ Documentation = "https://github.com/Ciprian-LocalPulse/tokenpropulsion/blob/main
 Issues = "https://github.com/Ciprian-LocalPulse/tokenpropulsion/issues"
 
 [project.optional-dependencies]
+semantic = ["sentence-transformers>=6,<7"]
+tokenizers = ["tiktoken>=0.9,<1"]
 xai = ["xai-sdk>=1.20,<2"]
 api = ["fastapi>=0.115,<1", "uvicorn>=0.34,<1"]
-dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "mypy>=1.15,<3", "build>=1.2,<2", "pip-audit>=2.8,<3", "bandit>=1.8,<2", "httpx>=0.28,<1"]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "mypy>=1.15,<3", "build>=1.2,<2", "pip-audit>=2.8,<3", "bandit>=1.8,<2", "httpx>=0.28,<1", "twine>=6,<7"]
 
 [project.scripts]
 tokenpropulsion = "tokenpropulsion.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tokenpropulsion"]
+core-metadata-version = "2.4"
+
+[tool.hatch.build.targets.sdist]
+core-metadata-version = "2.4"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -60,5 +66,5 @@ strict = true
 files = ["src/tokenpropulsion"]
 
 [[tool.mypy.overrides]]
-module = ["xai_sdk.*", "grpc.*"]
+module = ["xai_sdk.*", "grpc.*", "sentence_transformers.*", "tiktoken.*"]
 ignore_missing_imports = true

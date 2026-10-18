@@ -51,7 +51,7 @@ from tokenpropulsion.security import authorize_network
         "financial amount 125.50",
     ],
 )
-@pytest.mark.parametrize("level", ["low", "medium", "high"])
+@pytest.mark.parametrize("level", ["low", "medium", "high", "adaptive"])
 def test_protected_identity(text, level):
     result = compress_prompt(text, level)
     assert result.optimized_text == text

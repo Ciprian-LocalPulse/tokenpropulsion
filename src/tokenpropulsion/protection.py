@@ -8,6 +8,10 @@ import re
 from .security import looks_sensitive
 
 _PATTERNS = {
+    "regulated_content": (
+        r"\b(?:medical|diagnosis|dosage|legal|liability|disclaimer|"
+        r"medicament|juridic)\b"
+    ),
     "quoted_literal": "[\"'“”‘’]",
     "markdown_hard_break": r" {2,}\r?\n",
     "code_or_structure": r"[`~{}\[\]<>]|^ *(?:[-*+] |#{1,6} |\d+[.)] )|[\t]|^ {4}",

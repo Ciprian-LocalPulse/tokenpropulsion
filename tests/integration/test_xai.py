@@ -62,6 +62,27 @@ def test_async(sdk):
     assert factory.called
 
 
+def test_sync_and_async_budget_blocks_before_extra_request(sdk):
+    from tokenpropulsion.budget import RequestBudget
+
+    sync, asynchronous, _, _ = sdk
+    usage = sync.chat.create.return_value.sample.return_value.usage
+    usage.cost_in_usd_ticks = 10_000_000
+    usage.cached_prompt_text_tokens = 2
+    budget = RequestBudget(0.02, 0.01, 2)
+    adapter = XAIAdapter("fake", allow_network=True, budget=budget)
+    result = adapter.request("Hello.")
+    assert result.content == "OK" and result.cached_input_tokens == 2
+    assert result.reported_cost_usd == pytest.approx(0.001)
+    assert asyncio.run(adapter.arequest("Hello.")).content == "OK"
+    with pytest.raises(InputError, match="budget exhausted"):
+        adapter.request("Hello.")
+    assert sync.chat.create.return_value.sample.call_count == 1
+    assert asynchronous.chat.create.return_value.sample.await_count == 1
+    assert budget.snapshot()["requests_reserved"] == 2
+    assert budget.snapshot()["reported_usd"] == pytest.approx(0.002)
+
+
 def test_opt_in_and_configuration(monkeypatch):
     monkeypatch.delenv("XAI_API_KEY", raising=False)
     with pytest.raises(NetworkDisabledError):

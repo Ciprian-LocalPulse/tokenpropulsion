@@ -1,0 +1,221 @@
+{
+  "version": "2.0.0a1",
+  "dataset_sha256": "7418f1d284438b60cd0a81eba84731e4a2c833ea803c320a0bb8c89ed5a96b83",
+  "tokenizer": {
+    "identity": "tiktoken:cl100k_base",
+    "exact": true,
+    "kind": "unrelated-tokenizer"
+  },
+  "rows": [
+    {
+      "id": "long_repetitive-1",
+      "category": "long_repetitive",
+      "original_tokens": 203,
+      "conservative_tokens": 203,
+      "whitespace_tokens": 203
+    },
+    {
+      "id": "long_repetitive-2",
+      "category": "long_repetitive",
+      "original_tokens": 239,
+      "conservative_tokens": 239,
+      "whitespace_tokens": 239
+    },
+    {
+      "id": "rag-1",
+      "category": "rag",
+      "original_tokens": 203,
+      "conservative_tokens": 203,
+      "whitespace_tokens": 203
+    },
+    {
+      "id": "rag-2",
+      "category": "rag",
+      "original_tokens": 239,
+      "conservative_tokens": 239,
+      "whitespace_tokens": 239
+    },
+    {
+      "id": "long_document-1",
+      "category": "long_document",
+      "original_tokens": 2738,
+      "conservative_tokens": 2738,
+      "whitespace_tokens": 2738
+    },
+    {
+      "id": "long_document-2",
+      "category": "long_document",
+      "original_tokens": 4178,
+      "conservative_tokens": 4178,
+      "whitespace_tokens": 4178
+    },
+    {
+      "id": "technical_documentation-1",
+      "category": "technical_documentation",
+      "original_tokens": 203,
+      "conservative_tokens": 203,
+      "whitespace_tokens": 203
+    },
+    {
+      "id": "technical_documentation-2",
+      "category": "technical_documentation",
+      "original_tokens": 239,
+      "conservative_tokens": 239,
+      "whitespace_tokens": 239
+    },
+    {
+      "id": "lexical-1",
+      "category": "complex_reasoning",
+      "original_tokens": 17,
+      "conservative_tokens": 16,
+      "whitespace_tokens": 16
+    },
+    {
+      "id": "lexical-2",
+      "category": "complex_reasoning",
+      "original_tokens": 23,
+      "conservative_tokens": 22,
+      "whitespace_tokens": 22
+    },
+    {
+      "id": "coding-1",
+      "category": "coding",
+      "original_tokens": 17,
+      "conservative_tokens": 17,
+      "whitespace_tokens": 13
+    },
+    {
+      "id": "coding-2",
+      "category": "coding",
+      "original_tokens": 35,
+      "conservative_tokens": 35,
+      "whitespace_tokens": 26
+    },
+    {
+      "id": "json_generation-1",
+      "category": "json_generation",
+      "original_tokens": 17,
+      "conservative_tokens": 17,
+      "whitespace_tokens": 15
+    },
+    {
+      "id": "json_generation-2",
+      "category": "json_generation",
+      "original_tokens": 34,
+      "conservative_tokens": 34,
+      "whitespace_tokens": 30
+    },
+    {
+      "id": "mathematical-1",
+      "category": "mathematical",
+      "original_tokens": 21,
+      "conservative_tokens": 21,
+      "whitespace_tokens": 20
+    },
+    {
+      "id": "mathematical-2",
+      "category": "mathematical",
+      "original_tokens": 42,
+      "conservative_tokens": 42,
+      "whitespace_tokens": 40
+    },
+    {
+      "id": "romanian-1",
+      "category": "romanian",
+      "original_tokens": 25,
+      "conservative_tokens": 25,
+      "whitespace_tokens": 24
+    },
+    {
+      "id": "romanian-2",
+      "category": "romanian",
+      "original_tokens": 50,
+      "conservative_tokens": 50,
+      "whitespace_tokens": 48
+    },
+    {
+      "id": "arabic-1",
+      "category": "arabic",
+      "original_tokens": 36,
+      "conservative_tokens": 36,
+      "whitespace_tokens": 35
+    },
+    {
+      "id": "arabic-2",
+      "category": "arabic",
+      "original_tokens": 72,
+      "conservative_tokens": 72,
+      "whitespace_tokens": 71
+    },
+    {
+      "id": "multilingual_mixed-1",
+      "category": "multilingual_mixed",
+      "original_tokens": 20,
+      "conservative_tokens": 20,
+      "whitespace_tokens": 19
+    },
+    {
+      "id": "multilingual_mixed-2",
+      "category": "multilingual_mixed",
+      "original_tokens": 40,
+      "conservative_tokens": 40,
+      "whitespace_tokens": 38
+    },
+    {
+      "id": "financial-1",
+      "category": "financial",
+      "original_tokens": 23,
+      "conservative_tokens": 23,
+      "whitespace_tokens": 22
+    },
+    {
+      "id": "financial-2",
+      "category": "financial",
+      "original_tokens": 46,
+      "conservative_tokens": 46,
+      "whitespace_tokens": 43
+    },
+    {
+      "id": "security_sensitive-1",
+      "category": "security_sensitive",
+      "original_tokens": 12,
+      "conservative_tokens": 12,
+      "whitespace_tokens": 11
+    },
+    {
+      "id": "security_sensitive-2",
+      "category": "security_sensitive",
+      "original_tokens": 24,
+      "conservative_tokens": 24,
+      "whitespace_tokens": 22
+    },
+    {
+      "id": "exact_format-1",
+      "category": "exact_format",
+      "original_tokens": 8,
+      "conservative_tokens": 8,
+      "whitespace_tokens": 7
+    },
+    {
+      "id": "exact_format-2",
+      "category": "exact_format",
+      "original_tokens": 16,
+      "conservative_tokens": 16,
+      "whitespace_tokens": 14
+    },
+    {
+      "id": "adversarial-1",
+      "category": "adversarial",
+      "original_tokens": 17,
+      "conservative_tokens": 17,
+      "whitespace_tokens": 16
+    },
+    {
+      "id": "adversarial-2",
+      "category": "adversarial",
+      "original_tokens": 34,
+      "conservative_tokens": 34,
+      "whitespace_tokens": 32
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0a1",
+  "checks": [
+    {
+      "check": "ruff",
+      "returncode": 0,
+      "output": "All checks passed!\n"
+    },
+    {
+      "check": "format",
+      "returncode": 0,
+      "output": "78 files already formatted\n"
+    },
+    {
+      "check": "mypy",
+      "returncode": 0,
+      "output": "Success: no issues found in 29 source files\n"
+    },
+    {
+      "check": "bandit",
+      "returncode": 0,
+      "output": "[main]\tINFO\tprofile include tests: None\n[main]\tINFO\tprofile exclude tests: None\n[main]\tINFO\tcli include tests: None\n[main]\tINFO\tcli exclude tests: None\n[json]\tINFO\tJSON output written to file: AUDIT/evidence-v2/bandit.json\n"
+    },
+    {
+      "check": "secrets",
+      "returncode": 0,
+      "output": "Scanned 130 text files; 0 high-confidence findings.\n"
+    },
+    {
+      "check": "v1-paper",
+      "returncode": 0,
+      "output": "Whitepaper verified: 10000 body words; front matter and references excluded.\n"
+    },
+    {
+      "check": "v1-fixtures",
+      "returncode": 0,
+      "output": "All synthetic formatting fixtures and the published dataset hash passed.\n"
+    },
+    {
+      "check": "fresh-core",
+      "returncode": 0,
+      "output": "Fresh dependency-free installed wheel API and isolation passed\n"
+    },
+    {
+      "check": "build",
+      "returncode": 0,
+      "output": "Successfully built tokenpropulsion-2.0.0a1.tar.gz and tokenpropulsion-2.0.0a1-py3-none-any.whl\n* Getting build dependencies for sdist...\n* Building sdist...\n* Building wheel from sdist\n* Getting build dependencies for wheel...\n* Building wheel...\n"
+    },
+    {
+      "check": "twine",
+      "returncode": 0,
+      "output": "Checking dist\\v2.0.0a1\\tokenpropulsion-2.0.0a1-py3-none-any.whl: PASSED\nChecking dist\\v2.0.0a1\\tokenpropulsion-2.0.0a1.tar.gz: PASSED\n"
+    }
+  ],
+  "fresh_wheel_dependencies": [],
+  "pdf_pages": 9,
+  "pdf_all_pages_rendered_and_visually_reviewed": true,
+  "pdf_out_of_bounds_characters": 0,
+  "semantic_extra_installed": false,
+  "live_xai_executed": false
+}

@@ -8,7 +8,8 @@ from .models import CompressionResult, Transformation, ValidationResult
 from .profiles import get_profile
 from .protection import protection_reasons
 from .security import validate_input
-from .tokenizer import EstimatedTokenizer, Tokenizer
+from .strategies import CandidateValidator, SemanticBackend
+from .tokenizer import EstimatedTokenizer, Tokenizer, count_metadata
 from .validators import validate_candidate
 
 
@@ -17,9 +18,25 @@ def compress_prompt(
     level: str = "medium",
     *,
     tokenizer: Tokenizer | None = None,
+    strategy: str | None = None,
+    task_validator: CandidateValidator | None = None,
+    semantic_backend: SemanticBackend | None = None,
+    preserve: tuple[str, ...] = (),
 ) -> CompressionResult:
     start = time.perf_counter()
     validate_input(text)
+    if level == "adaptive" or strategy not in {None, "conservative"}:
+        from .engine import advanced_compress
+
+        return advanced_compress(
+            text,
+            level,
+            tokenizer=tokenizer,
+            strategy=strategy,
+            validator=task_validator,
+            backend=semantic_backend,
+            preserve=preserve,
+        )
     profile = get_profile(level)
     counter = tokenizer if tokenizer is not None else EstimatedTokenizer()
     reasons = protection_reasons(text)
@@ -48,7 +65,7 @@ def compress_prompt(
                 candidate = updated
     validations = list(validate_candidate(text, candidate, bool(reasons)))
     before, after = counter.count(text), counter.count(candidate)
-    if not isinstance(before, int) or not isinstance(after, int) or min(before, after) < 0:
+    if type(before) is not int or type(after) is not int or min(before, after) < 0:
         raise ValueError("tokenizer must return nonnegative integer counts")
     validations.append(
         ValidationResult("nonincreasing_count", after <= before, "Same tokenizer used.")
@@ -71,4 +88,5 @@ def compress_prompt(
         tuple(warnings),
         tuple(validations),
         fallback,
+        count_kind=str(count_metadata(counter)["kind"]),
     )

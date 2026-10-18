@@ -1,0 +1,1 @@
+{"id": "reviewed-stars", "category": "remote_smoke", "text": "Reply exactly OK.", "expected_output": "OK", "output_evaluator": "exact", "contract": "identity"}

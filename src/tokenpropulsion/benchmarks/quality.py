@@ -1,6 +1,7 @@
 """Task-specific deterministic output evaluators; no semantic-equivalence claims."""
 
 import json
+import math
 from typing import Any
 
 
@@ -49,9 +50,13 @@ def validate_schema(value: Any, schema: dict[str, Any]) -> bool:
     }
     if kind not in types:
         raise ValueError("unsupported schema type")
+    if kind != "object" and set(schema) - {"type"}:
+        raise ValueError("object keywords on non-object schema")
     if not isinstance(value, types[kind]):
         return False
     if kind in {"integer", "number"} and isinstance(value, bool):
+        return False
+    if kind == "number" and isinstance(value, float) and not math.isfinite(value):
         return False
     if kind == "object":
         props = schema.get("properties", {})

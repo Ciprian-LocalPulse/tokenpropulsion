@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0a1-synthetic-v1",
+  "license": "MIT",
+  "origin": "project-authored synthetic data",
+  "real_world_data": false,
+  "rows": 30,
+  "categories": [
+    "adversarial",
+    "arabic",
+    "coding",
+    "complex_reasoning",
+    "exact_format",
+    "financial",
+    "json_generation",
+    "long_document",
+    "long_repetitive",
+    "mathematical",
+    "multilingual_mixed",
+    "rag",
+    "romanian",
+    "security_sensitive",
+    "technical_documentation"
+  ],
+  "sha256": "7418f1d284438b60cd0a81eba84731e4a2c833ea803c320a0bb8c89ed5a96b83",
+  "quality_scope": "Declared context-set, keyword-task or byte-identity contracts; no LLM output quality."
+}

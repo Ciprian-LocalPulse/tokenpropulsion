@@ -1,3 +1,11 @@
+# 2.0.0a1 - 2026-10-18
+
+Research alpha: opt-in task-validated structural/lexical strategies, structured context
+contracts, optional local embedding proposals, reversible transport, bounded experiment
+budgets, tokenizer provenance, expanded CLI/API and synthetic laboratory.
+Measured local results and limitations: AUDIT/FINAL_TECHNICAL_AUDIT.md.
+No stable, PyPI or live-provider validation claim.
+
 # Changelog
 
 ## 1.0.0rc1 — 2026-10-17

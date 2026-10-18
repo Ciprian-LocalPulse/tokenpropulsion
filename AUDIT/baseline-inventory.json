@@ -1,0 +1,521 @@
+{
+  "commit": "509683915b376613c8e711fc042ceebe3abb666e",
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 122,
+      "sha256": "d7f18b595789636691e42db58bab183e899cdb59a753659e2b4fd1fc25132934",
+      "kind": "utf8"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 197,
+      "sha256": "8f17431f50621cdbd42a889377c6c7c3ac1a453d20684418d16651890978fdbe",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "bytes": 581,
+      "sha256": "b68952a179ac1cd7fb52bac15d56746f46a0dc9ebc3d871a24fbe9ca035bec26",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "bytes": 348,
+      "sha256": "d35c45650b86593738129a1b5170c2c1acb91d0aa6e922583e9310e7bc671b3d",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "bytes": 203,
+      "sha256": "aa6ddb4d1abf7146af4a5c69f63a61441c81130c16d9cd67f79ce86b67f77695",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "bytes": 316,
+      "sha256": "f9ba25e3776d369f1323c9dc205a6fc8d1d1e93c603a60f45f8966f3cf6c674b",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 1522,
+      "sha256": "f3ebdf7c026449c910b7f8cc328a1a299989fab2848d07b4855b80ccfdd9cc00",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "bytes": 1968,
+      "sha256": "3efa8ea931ca5ab3b0dde5e3d27b80f9c6a3e2816085f895a16bfc7e5c0d36bc",
+      "kind": "utf8"
+    },
+    {
+      "path": ".github/workflows/security.yml",
+      "bytes": 621,
+      "sha256": "4129ef45889002d88a69c7ed7a511fa179336aff19dfa05107d3b8face027e1e",
+      "kind": "utf8"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 184,
+      "sha256": "15cd84ffa13245333a575879ba3c57119e14f465fa1ccf561e066ce638e2dbb4",
+      "kind": "utf8"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 887,
+      "sha256": "0f920a0c4e0227ca76b1e2351c71d0d0589324f50712813d5e0e2e6269a19f5b",
+      "kind": "utf8"
+    },
+    {
+      "path": "CITATION.cff",
+      "bytes": 415,
+      "sha256": "f0299ec16cc90abb87ca34518a8060ef0ee8dad63500b99e6482b8791dac6960",
+      "kind": "utf8"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "bytes": 447,
+      "sha256": "7a45cbb3260e27e6f8934be19d3e9e82e0dc9d3ede787c76e765b8b544daf596",
+      "kind": "utf8"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 684,
+      "sha256": "32d3095c7825fd219cae7db5349790bd3f329ad33994b93eab868d5fafeb2fc8",
+      "kind": "utf8"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1101,
+      "sha256": "a448fe54aff11cf9d5ea1f231403278f5a66cf661dd3dc80371a6019a80322bb",
+      "kind": "utf8"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 507,
+      "sha256": "3a6b37d8006add2cc272375a58d90b6b2b57163cc1d4eb9ece29d562d5811fe0",
+      "kind": "utf8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 11769,
+      "sha256": "9b74c6bf6d7df91ac0d7fca5f934506c2dfbefeb33b18ab590036e7acb95f9d2",
+      "kind": "utf8"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 2183,
+      "sha256": "8d1e10370df8ec630eda4e9e48e09d14d69992f69e107ab9a77ebfa0e47b3c4d",
+      "kind": "utf8"
+    },
+    {
+      "path": "assets/README.md",
+      "bytes": 722,
+      "sha256": "a630c48b84ff9938936fd32e6261d9e1354fa96ad164b05474269219612c8eee",
+      "kind": "utf8"
+    },
+    {
+      "path": "assets/architecture.svg",
+      "bytes": 904,
+      "sha256": "66e8346b7c40aa0f36d15910fb2d073a56bf5b76a3788c4d3dcf3132dbad7403",
+      "kind": "utf8"
+    },
+    {
+      "path": "assets/demo.txt",
+      "bytes": 399,
+      "sha256": "a4cfacaa32af0aa35f7ae19f39c35379798b13cab42f2f7e9914aaa0299f8cb2",
+      "kind": "utf8"
+    },
+    {
+      "path": "assets/image-generation-prompt.txt",
+      "bytes": 1644,
+      "sha256": "9fe140acb81e12e11a68d0994d18091d1f6771d8f9eacde7bfdef1b6e4404796",
+      "kind": "utf8"
+    },
+    {
+      "path": "assets/image-provenance.json",
+      "bytes": 740,
+      "sha256": "8ce27c5c537d58a3c8c979756a0547fa5e13250040306e9343431a55217001de",
+      "kind": "utf8"
+    },
+    {
+      "path": "assets/tokenpropulsion-hero-8k.png",
+      "bytes": 33458002,
+      "sha256": "3e9507d66f52171c1cccbe9f9df519d78568e5e8c6bcfe131172da596758ad70",
+      "kind": "binary"
+    },
+    {
+      "path": "assets/tokenpropulsion-hero-native.png",
+      "bytes": 1964499,
+      "sha256": "94f9bb67fd9d62ea0c010fa3d4a95c8fbdf6ddb483541723f73e1588417603e0",
+      "kind": "binary"
+    },
+    {
+      "path": "assets/tokenpropulsion-hero-preview.jpg",
+      "bytes": 343583,
+      "sha256": "4a74539c96e4e20d1db9c3a2762ec78eea1a60d600251ea60f762825f7ce779a",
+      "kind": "binary"
+    },
+    {
+      "path": "benchmarks/README.md",
+      "bytes": 543,
+      "sha256": "93f3b0153119a0d2b07042ea35d272e7205cf4718174e38194a13a59f37cc90f",
+      "kind": "utf8"
+    },
+    {
+      "path": "benchmarks/datasets/sample.jsonl",
+      "bytes": 35408,
+      "sha256": "1248cb7eb932bd8e5330b6fcbe3dab9adf3a5a7ab5acb67eb2bdb126cf1fc11f",
+      "kind": "utf8"
+    },
+    {
+      "path": "benchmarks/results/local.json",
+      "bytes": 4048,
+      "sha256": "f692ac667e2e026766b4ff0469b7741639039fb36019fe32a69c112c2a265761",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/architecture.md",
+      "bytes": 1903,
+      "sha256": "f9e1fccd1feaa680efccf66df3843ca3783f3ab7545f7e4adebdc17ce4cb7b28",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/bandit.json",
+      "bytes": 7510,
+      "sha256": "04b3fdf8b9f54ae2cc23100e2195c4c7c3cc33b56dac453bbda0e33cfed9a44f",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/coverage.json",
+      "bytes": 153750,
+      "sha256": "191463b2fd3a8c3daefde5b25d90fa66610e4eff5e05b4a007fd57eca0604e5c",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/dependency-audit.json",
+      "bytes": 4542,
+      "sha256": "f125fe96e0217b08bbd9e399c4eefd17ddaf16340cf6a905ef461a9bd2628ec7",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/evaluation.md",
+      "bytes": 2228,
+      "sha256": "48bf054988e92434c5d4b0927767dbb3009c8aa97f10692e115387e45c58034e",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/hosted-validation.json",
+      "bytes": 444,
+      "sha256": "1eac203fb6bd65c647156ce93c77228aae109f2d3be1278d0a65ae48943cd396",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/install-smoke.json",
+      "bytes": 275,
+      "sha256": "3f05829fc0189ad42c0dbddb84a9d425dcc5e11a26f8c1f1a67bc86b24d77cee",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/launch-copy.md",
+      "bytes": 1612,
+      "sha256": "aa8c0611f29ce5e9dfcc1e7f0a6efab66a94440d0103d94a5a4168852e4b388f",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/release-notes.md",
+      "bytes": 1352,
+      "sha256": "e5217a7dd3ea3918de39659dbf0f7916d95420e6591e59862bbc493b84c5004b",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/release.md",
+      "bytes": 2452,
+      "sha256": "b4eb55aafb3d2b3caee505f177c6db0380b335d9ae36c9ecdecb3124974eb99c",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/repository-metadata.json",
+      "bytes": 357,
+      "sha256": "a971fcddbf7cada07125dfeb8761290626c72c56ac1acb187d298d7d803c07c5",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/requirements-tested-py312-windows.txt",
+      "bytes": 1477,
+      "sha256": "ef81151a2047567230e3e97de0d3967b8dba0f25221f6d6f8e3e7325fe837598",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/test-results.json",
+      "bytes": 338,
+      "sha256": "afc383af3e2d307bb2bb5c3ad640d842f05a6614945a825741be46d0b24f05a8",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 5850,
+      "sha256": "77a46399e9416ecea68bb4247f7a848ace82f464e96dad880d583c62b1608dc1",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/whitepaper/TokenPropulsion-Whitepaper-v1.0.0rc1.md",
+      "bytes": 78411,
+      "sha256": "6a7e4e012d8d084d59972e2cd6904f41888fb1ebaea9d099a2c01247ffb5e107",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/whitepaper/TokenPropulsion-Whitepaper-v1.0.0rc1.pdf",
+      "bytes": 586582,
+      "sha256": "0533302fceeace1e71aedf02b2c32f04545db70f1f40646e593582b5a023790f",
+      "kind": "binary"
+    },
+    {
+      "path": "docs/whitepaper/document-validation.json",
+      "bytes": 396,
+      "sha256": "f02c831b70227df0d920295e37bcac66f4b8a3c1ce55085ed29bcbe9c3e2d08d",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/whitepaper/render-dependency-audit.json",
+      "bytes": 208,
+      "sha256": "3f68fc23c3a16fc393856a0c2696509837320b528537b936273bcddae8cc7e83",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/whitepaper/requirements-render.txt",
+      "bytes": 18,
+      "sha256": "9e5a1b1a2fce509a98416339e3dd4eb598bc1eda4dc175c964d3bb878c0cd209",
+      "kind": "utf8"
+    },
+    {
+      "path": "docs/xai-research.md",
+      "bytes": 1350,
+      "sha256": "9a41c0d34c828e1a4bdacea6e7dd50dfac121251105781ea0113282d402778bf",
+      "kind": "utf8"
+    },
+    {
+      "path": "examples/basic.py",
+      "bytes": 170,
+      "sha256": "c677e29ea2f004a209eae7c1a96bbe43b1c53006a9ae052ec087e205b61685cc",
+      "kind": "utf8"
+    },
+    {
+      "path": "examples/demo.py",
+      "bytes": 573,
+      "sha256": "f0deeee5e3d54420e513fb81f3d0210e77eff51eb36ccb3a7e85134035a41e87",
+      "kind": "utf8"
+    },
+    {
+      "path": "examples/remote_experiment.py",
+      "bytes": 874,
+      "sha256": "b44c8aaf884f1b5aa290ba0de664c1ebb8a911223e96ac6f96212e6b10939ee9",
+      "kind": "utf8"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 1868,
+      "sha256": "2a8ef051ff7f608861282c201eee9995f17d9a75740ad78a14bec1f068e1d331",
+      "kind": "utf8"
+    },
+    {
+      "path": "scripts/check_benchmark.py",
+      "bytes": 636,
+      "sha256": "6202027e79cd601436f45661caabe38a9477218d30e386665e23af659e218714",
+      "kind": "utf8"
+    },
+    {
+      "path": "scripts/check_whitepaper.py",
+      "bytes": 590,
+      "sha256": "41bba22c2ffb16a3b5b605728eb8dab0395961decde52a51f0e1d85227d0adf9",
+      "kind": "utf8"
+    },
+    {
+      "path": "scripts/render_whitepaper.py",
+      "bytes": 7279,
+      "sha256": "effbe76a0069065cd681b3c771b3a94826c0643d42865e8e701f461ed7afd42e",
+      "kind": "utf8"
+    },
+    {
+      "path": "scripts/secret_scan.py",
+      "bytes": 1540,
+      "sha256": "812f092c92ef52e3e1da276e980c114e71664ee93658bd77b5c2949f139a100d",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/__init__.py",
+      "bytes": 252,
+      "sha256": "5c46a1a8fb794cf843f1234f2a628e170bdeeddef41e953688896d520a3b24a6",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/__main__.py",
+      "bytes": 51,
+      "sha256": "482b8693e2fe6dbd732e3d7961e03827d3efa187bad11d29da188be580ebbeea",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/adapters/__init__.py",
+      "bytes": 44,
+      "sha256": "9ab8b65544c0da9a0dcc40f48826e624aea06d6894dedfe7d1360a0edb60a176",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/adapters/xai.py",
+      "bytes": 6163,
+      "sha256": "4e3f29b3d11bd964d5e66e797ffd96b4c975e46728029951fce9fcd1e70597b2",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/api/__init__.py",
+      "bytes": 44,
+      "sha256": "9ab8b65544c0da9a0dcc40f48826e624aea06d6894dedfe7d1360a0edb60a176",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/api/app.py",
+      "bytes": 3172,
+      "sha256": "4c58b316dff0830b49ed6a0aab1b1f40a23ea45c0e3e092bacf1a8a40ba5a373",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/benchmarks/__init__.py",
+      "bytes": 44,
+      "sha256": "9ab8b65544c0da9a0dcc40f48826e624aea06d6894dedfe7d1360a0edb60a176",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/benchmarks/quality.py",
+      "bytes": 2461,
+      "sha256": "d83efacce0c1676a1c65395db65734424f7e41ef5a5ada7e554c54286de7f9ac",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/benchmarks/reporting.py",
+      "bytes": 328,
+      "sha256": "59934477362d2d9d579fe5f41a212941c48f92e1095419a6926cd3c34a37218d",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/benchmarks/runner.py",
+      "bytes": 8240,
+      "sha256": "2ae4b514a389a6f95fd507ef7bd37eff246d791e9928acd79a6b3cf6baea5a2a",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/cli.py",
+      "bytes": 3251,
+      "sha256": "bbd229a1e950352118b925f0be0a3286adc99017357258c4e78e030e61e320ee",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/compressor.py",
+      "bytes": 2934,
+      "sha256": "4609b19e3e2f549e9eb7295c671aa27fbb40d75f8436fdea298d9c522624db2b",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/exceptions.py",
+      "bytes": 448,
+      "sha256": "2ea15ca55c0c99f74220b691ba58fcf1d192dd054f6d0b61127c21609dab7273",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/metrics.py",
+      "bytes": 1338,
+      "sha256": "69bddf82704fd3dea770cbe1bc53587b128a580c914c01c63d3e50ff34be155f",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/models.py",
+      "bytes": 969,
+      "sha256": "5c870a47b65f1f7df8c5c2a132fdb6e1d6cf53a60be71c02941e6c03376f9f06",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/profiles.py",
+      "bytes": 559,
+      "sha256": "50582fe6cd079115f77eca398e988f0b53c5e3325ab7ecf0bf0cd2196980a2ea",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/protection.py",
+      "bytes": 1497,
+      "sha256": "8785930fd0de6ab3f99314fc6906cb61507e59ef6b658a199cf9511cf8059657",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/py.typed",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/security.py",
+      "bytes": 1276,
+      "sha256": "b5cc3c5b514f0315fcd7e737dc237d4c25bfb3836a81e6e8b783afadb2319f0a",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/tokenizer.py",
+      "bytes": 928,
+      "sha256": "803babe8640836cc4bc775f3ea54d7556efaabb13b024c704b9918aa0c20717a",
+      "kind": "utf8"
+    },
+    {
+      "path": "src/tokenpropulsion/validators.py",
+      "bytes": 709,
+      "sha256": "e8d06768bd66b2341f25193e64b4d4da2c809bf89777769cf7e10ae5f53d6348",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/fixtures/README.md",
+      "bytes": 193,
+      "sha256": "75a2a546751195f4fcfc4d29602095287bd621c04eb1ebf21e7dfc9c447e78ae",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/integration/test_api.py",
+      "bytes": 2011,
+      "sha256": "85c5782a75c154e59322b2c6b1be60353e366ea26b3dfaa1d7157c9da2acccb8",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/integration/test_cli.py",
+      "bytes": 2737,
+      "sha256": "adfdc0697b6411c94e404e163fea9e5e5e8814f70e41a0a32b6eeab34f413aa9",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/integration/test_xai.py",
+      "bytes": 6380,
+      "sha256": "d416e076d2485e464204474a8231e8ea05400bc3b820bd8bfe32da61243848ed",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/regression/test_invariants.py",
+      "bytes": 796,
+      "sha256": "7f9405bcad91dc6dcb2e47ad05f79371e725bfed3b9c9e69c9988874b1485bc4",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/security/test_protected.py",
+      "bytes": 2052,
+      "sha256": "886db105543f8d040ed820d1da0aa84537ca23d22f13e57be00411a0b41c0878",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/unit/test_benchmarks.py",
+      "bytes": 4682,
+      "sha256": "fdf2a59ac04428d2558751b8791f3afd1a97a9e0296ecdba498be5aff5949e2f",
+      "kind": "utf8"
+    },
+    {
+      "path": "tests/unit/test_core.py",
+      "bytes": 5311,
+      "sha256": "e728786f31151f8fc04cbc68367e828f4bb044463b7809b907f80da975d64b0a",
+      "kind": "utf8"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@ec52d0af729a7c50ced4261d17a07916f43f5b8e
         with:
           python-version: '3.12'
-      - run: python -m pip install -e '.[dev,api,xai]'
+      - run: python -m pip install -e '.[dev,api,xai,tokenizers]'
       - run: python -m bandit -r src
       - run: python -m pip_audit
       - run: python scripts/secret_scan.py

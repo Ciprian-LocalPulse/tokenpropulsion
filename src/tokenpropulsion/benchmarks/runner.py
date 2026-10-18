@@ -18,14 +18,23 @@ from ..tokenizer import EstimatedTokenizer
 def load_dataset(path: Path) -> list[dict[str, Any]]:
     if path.stat().st_size > 10 * MAX_INPUT_BYTES:
         raise InputError("dataset exceeds ten megabytes")
-    rows = []
+    rows: list[dict[str, Any]] = []
     ids: set[str] = set()
-    for line in path.read_text(encoding="utf-8").splitlines():
+    with path.open("rb") as stream:
+        raw = stream.read(10 * MAX_INPUT_BYTES + 1)
+    if len(raw) > 10 * MAX_INPUT_BYTES:
+        raise InputError("dataset exceeds ten megabytes")
+    for line in raw.decode("utf-8").splitlines():
         if not line.strip():
             continue
-        row = json.loads(line)
+        try:
+            row = json.loads(line)
+        except (ValueError, RecursionError):
+            raise InputError("invalid dataset JSON") from None
         if not isinstance(row, dict) or not isinstance(row.get("id"), str):
             raise InputError("each dataset row requires a string id")
+        if len(row["id"]) > 128 or len(rows) >= 4096:
+            raise InputError("dataset id or row limit exceeded")
         if row["id"] in ids:
             raise InputError("dataset ids must be unique")
         if not isinstance(row.get("text"), str):
@@ -109,10 +118,11 @@ def run_remote(
     *,
     repeats: int = 3,
     pricing: Pricing | None = None,
+    optimizer: Callable[[dict[str, Any]], Any] | None = None,
 ) -> dict[str, Any]:
     """Opt-in through adapter. Costs money. Report contains no prompt/output text.
 
-    Exact billed usage differences include variable provider overhead. Pair order is
+    Provider-reported usage differences include variable provider overhead. Pair order is
     alternated, but this is not a randomized controlled experiment.
     """
     if not 2 <= repeats <= 100:
@@ -126,7 +136,7 @@ def run_remote(
     measurements = []
     failures = []
     for row in rows:
-        compression = compress_prompt(row["text"])
+        compression = optimizer(row) if optimizer else compress_prompt(row["text"])
         for repeat in range(repeats):
             pair: dict[str, Any] = {}
             variants = [("original", row["text"]), ("optimized", compression.optimized_text)]
@@ -146,6 +156,12 @@ def run_remote(
                         - optimized.input_tokens,
                         "original_input_tokens": original.input_tokens,
                         "optimized_input_tokens": optimized.input_tokens,
+                        "original_cached_tokens": getattr(original, "cached_input_tokens", None),
+                        "optimized_cached_tokens": getattr(optimized, "cached_input_tokens", None),
+                        "original_reported_cost_usd": getattr(original, "reported_cost_usd", None),
+                        "optimized_reported_cost_usd": getattr(
+                            optimized, "reported_cost_usd", None
+                        ),
                         "original_output_tokens": original.output_tokens,
                         "optimized_output_tokens": optimized.output_tokens,
                         "original_success": bool(evaluator(original.content, row)),

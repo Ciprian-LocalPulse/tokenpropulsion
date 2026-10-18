@@ -1,243 +1,137 @@
-# TokenPropulsion
+# TokenPropulsion 2.0
 
 [![TokenPropulsion](assets/tokenpropulsion-hero-preview.jpg)](assets/tokenpropulsion-hero-8k.png)
 
-[Repository](https://github.com/Ciprian-LocalPulse/tokenpropulsion) · [Whitepaper PDF](docs/whitepaper/TokenPropulsion-Whitepaper-v1.0.0rc1.pdf) · [Whitepaper source](docs/whitepaper/TokenPropulsion-Whitepaper-v1.0.0rc1.md) · [8K artwork](assets/tokenpropulsion-hero-8k.png)
-
-**Less input. Measurable savings. Verified behavior.**
-
 [![CI](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions/workflows/ci.yml/badge.svg)](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-1.0.0rc1-orange)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue) ![MIT](https://img.shields.io/badge/license-MIT-green) ![Alpha](https://img.shields.io/badge/version-2.0.0a1-orange)
 
-A dependency-free Python core for auditable prompt formatting, with optional official
-xAI SDK integration, an authenticated REST service, and reproducible evaluation tools.
-**Release candidate:** live xAI behavior remains unverified. The first hosted CI
-matrix passed on Python 3.10-3.14; current results are linked below.
-Hosted CI results are available in [GitHub Actions](https://github.com/Ciprian-LocalPulse/tokenpropulsion/actions).
-The 8K artwork is an upscaled export; [asset provenance](assets/README.md) records native dimensions.
+Auditable prompt compression with a dependency-free Python core, explicit task contracts,
+conservative fallback, and optional xAI, REST, tokenizer and local embedding integrations.
+**Research alpha: not production ready.** No live xAI study has been executed.
 
-## The problem
+[2.0 whitepaper](docs/whitepaper/TokenPropulsion-Whitepaper-v2.0.0a1.pdf) · [Research and migration](docs/research-v2.md) · [Audit](AUDIT/RELEASE_READINESS.md) · [Measured results](benchmarks/results/v2.0.0a1/performance_summary.md) · [Original 10,000-word paper](docs/whitepaper/TokenPropulsion-Whitepaper-v1.0.0rc1.pdf)
 
-LLM inputs often contain redundant formatting. Changing words or context to save tokens
-can also change instructions, damage code, or weaken security boundaries. Savings must
-be measured against a specified tokenizer and tested against the actual task.
+## Measured evidence
 
-## Why TokenPropulsion?
+The project-authored synthetic dataset has 30 cases in 15 categories. With exact
+**cl100k_base** counting, input length decreased **8,871 → 6,249 tokens (29.557%)**.
+This tokenizer is unrelated to the selected Grok model. These are not Grok usage or
+billing measurements. Long repeated-context cases dominate the token-weighted total;
+20 protected cases remain unchanged. All declared deterministic task contracts passed.
+This does not measure model answer quality or universal semantic equivalence.
 
-Predictable formatting changes, conservative whole-prompt protection, reversible audit
-records, and clear separation between estimated counts and actual provider usage.
-This release does not remove repeated instructions or claim semantic compression.
+Local compression overhead: mean **2.450 ms**, p50 **0.161 ms**, p95 **23.379 ms**
+(10 repeats per case, Windows/Python 3.12). See the [raw report](benchmarks/results/v2.0.0a1/optimized.json)
+for timing variance and descriptive confidence interval. Real-world corpus evaluation,
+live provider output quality, remote latency, TTFT and invoice savings remain unmeasured.
 
-## Key features
+![Measured synthetic counts](benchmarks/results/v2.0.0a1/token-comparison.svg)
 
-- Zero required runtime dependencies; Python 3.10+.
-- Low, medium, and explicit high formatting profiles; no external compression calls.
-- Whole-prompt preservation for recognized code, structure, critical instructions,
-  addresses, paths, math, sensitive markers, and unfamiliar Unicode scripts.
-- Original text, stepwise before/after records, mechanical validators, and fallback.
-- CLI, optional FastAPI factory, sync/async official xAI adapter, remote text tokenizer.
-- Offline baselines, deterministic fixtures, and repeated opt-in remote experiments.
-
-## How it works
-
-1. Validate Unicode and the one-megabyte UTF-8 input limit.
-2. Detect protected syntax. Any match preserves the entire prompt.
-3. Trim trailing ASCII spaces (low); collapse excessive blank lines (medium);
-   collapse repeated prose spaces (high).
-4. Check ordered nonwhitespace units, protected identity, and nonincreasing token count.
-5. Return original text on failed validation; expose every finding.
-
-These checks establish mechanical invariants, **not semantic equivalence**. Even
-formatting can carry meaning in natural language. Review changes and run task tests.
-Medium adds only blank-line normalization: no context-aware word deletion has been
-justified. High is deliberately limited to formatting too.
-
-## Architecture
-
-![TokenPropulsion architecture](assets/architecture.svg)
-
-```text
-CLI / Python / authenticated FastAPI
-                |
- input limits -> whole-prompt protection -> formatting profiles
-                |
- validators -> tokenizer protocol -> immutable result + audit trail
-                |
- offline reports / explicit official xAI SDK adapter
-```
-
-See [architecture](docs/architecture.md), [evaluation](docs/evaluation.md), and
-[release gates](docs/release.md).
-
-## Installation
-
-Until a package is published, install from this checkout:
+## Installation and examples
 
 ```bash
-python -m pip install .
-python -m pip install '.[dev,api,xai]'  # optional development environment
+python -m pip install .                       # zero required runtime dependencies
+python -m pip install '.[api,xai,tokenizers]'  # optional integrations
+python -m pip install '.[dev,api,xai,tokenizers]' # development checks
 ```
 
-The distribution name is provisional until reserved on PyPI. No runtime network access
-occurs in the core. Optional dependency installation itself downloads packages.
-
-## Quick start
+No PyPI release has been made. Install this reviewed checkout or a GitHub release wheel.
 
 ```python
-from tokenpropulsion import compress_prompt
+from tokenpropulsion import compress_prompt, ContextSection, PromptDocument, compress_document
 
-result = compress_prompt("Explain stars.\n\n\nUse simple language.")
-print(result.optimized_text)
-print(result.tokenizer, result.counts_exact)  # estimate:utf8-bytes/4, False
+result = compress_prompt("Explain stars.   ")  # existing API remains supported
 assert result.restore() == result.original_text
+assert result.saved_percent == result.tokens_saved_percent
+
+section = ContextSection("source-a", "Stars emit light.", idempotent=True)
+document = PromptDocument("Summarize the context.", (section, section), "What emits light?")
+result = compress_document(document)
+print(result.optimized_text, result.validation_scope)
 ```
 
-## CLI examples
-
-```bash
-tokenpropulsion "Explain stars.   " --level medium --stats
-tokenpropulsion -f input.txt -o output.txt
-tokenpropulsion analyze -f input.txt
-tokenpropulsion -f input.txt --json
-tokenpropulsion benchmark --dataset benchmarks/datasets/sample.jsonl --repeats 10
-cat input.txt | tokenpropulsion > output.txt
-tokenpropulsion --help
-```
-
-Statistics go to stderr, optimized UTF-8 text goes to stdout. File and pipeline I/O
-preserve line endings and protected content bytes. JSON/analyze exports include
-prompt text and step records; store them carefully. Exit codes: 0 success, 1 broken
-pipe, 2 invalid arguments/input/file/dataset. `analyze` and `benchmark` are reserved
-positional commands; use `-f` or stdin for literal prompts with those exact names.
-A benchmark fixture failure is recorded in `failure_cases`; CI checks that field.
-
-## Python SDK usage
+Mark context idempotent only when multiplicity has no task meaning. Source identity,
+order, untrusted boundaries, instructions and question are retained. Protected context
+text is never deduplicated. Documents serialize as JSON; this is a separate explicit API.
 
 ```python
-from tokenpropulsion import compress_prompt
-from tokenpropulsion.tokenizer import EstimatedTokenizer
+from tokenpropulsion.strategies import TaskValidator
 
-r = compress_prompt(
-    "Explain stars.   ", level="low", tokenizer=EstimatedTokenizer(bytes_per_token=3.5)
+validator = TaskValidator(
+    "paragraph-set", lambda a, b: set(a.split("\n\n")) == set(b.split("\n\n"))
 )
-assert not r.semantic_equivalence_assessed
-print(r.to_dict())  # contains original text: explicit caller-controlled persistence
+result = compress_prompt("Stars shine.\n\nStars shine.", level="adaptive", task_validator=validator)
 ```
 
-Supply a `Tokenizer` protocol implementation with `identity`, `exact`, and `count(text)`.
-The default UTF-8-byte estimate is configurable, language-sensitive, and uncalibrated;
-it is neither exact model tokenization nor a guaranteed upper bound. A remote
-tokenizer makes total `processing_seconds` include network time; keep it out of local
-CPU benchmarks. Local benchmarks always use the offline estimate.
+This validator declares set semantics; it is unsuitable for tasks where repetitions
+matter. Caller-owned validators must assess the actual task, not return a constant.
 
-## xAI integration
+## Strategies and safety boundaries
 
-Install `.[xai]`, set `XAI_API_KEY`, and choose a supported model in your own account.
+| Strategy | Behavior | Acceptance and status |
+|---|---|---|
+| Conservative | Existing low/medium/high formatting | Mechanical checks; default |
+| Structural | Exact paragraph duplicates | Explicit task validator required |
+| Structured document | Duplicate declared idempotent context | Independent document-contract validation |
+| Lexical | Four small phrase substitutions | Explicit task validator; experimental |
+| Semantic | Optional local SentenceTransformer candidate | Local weights + task validator; stub-tested only |
+| Reversible | Bounded zlib/base64 transport envelope | Exact decoder required; not a model-readable prompt |
 
-```python
-from tokenpropulsion.adapters.xai import XAIAdapter, XAITokenizer
+Adaptive selects conservative formatting unless a supplied task validator and duplicate
+paragraphs permit structural reduction. It never automatically invokes embeddings or a
+remote model. All accepted candidates must have nonincreasing counts with the same
+counter. Code, math, structured syntax, critical instructions, security-sensitive markers,
+financial, medical and legal content receive conservative whole-prompt protection.
+Recognition is bounded pattern matching, not a complete sensitive-content detector.
 
-adapter = XAIAdapter(model="YOUR_SUPPORTED_MODEL", allow_network=True, timeout=60, max_retries=0)
-response = adapter.request("Explain stars.")
-print(response.input_tokens, response.output_tokens, response.remote_seconds)
-# async: response = await adapter.arequest("Explain stars.")
-# Two billable requests: comparison = adapter.compare("Explain stars.   ")
-# Remote text-only count: XAITokenizer(adapter).count("Explain stars.")
-```
+Token metadata separates provider-exact, verified-compatible local, unrelated local,
+heuristic and custom-unspecified counts. No verified-compatible Grok local tokenizer
+is supplied. tiktoken is explicitly unrelated. Its initial vocabulary download requires
+an explicit opt-in; core compression performs no network I/O.
 
-The adapter uses `Client`/`AsyncClient`, `chat.create`, `chat.sample`, returned usage,
-and `tokenize.tokenize_text` from the official SDK. It disables stored chat messages,
-sets a timeout and output cap, and uses bounded retries for transient gRPC failures.
-Retries can incur duplicate charges. No retry is enabled by default. Keys and provider
-exception details are never logged. SDK/provider telemetry and retention have separate
-policies; inspect them before sending private data. Sensitive markers need a separate
-`allow_sensitive=True`; detection is heuristic and does not replace dataset review.
-
-Research references and tested SDK version: [xAI research](docs/xai-research.md).
-Live requests have **not** been tested; mock tests cannot establish provider behavior.
-
-## Optional REST service
+## CLI and optional service
 
 ```bash
-# Generate a random ASCII token of at least 32 characters in your secret manager.
-export TOKENPROPULSION_API_TOKEN='YOUR_RANDOM_TOKEN_AT_LEAST_32_CHARACTERS'
-uvicorn tokenpropulsion.api.app:create_app --factory --host 127.0.0.1
+tokenpropulsion version
+tokenpropulsion doctor
+tokenpropulsion compress 'Stars shine.   '
+tokenpropulsion analyze 'Stars shine.   '
+tokenpropulsion compare 'Stars shine.   '
+tokenpropulsion benchmark --dataset benchmarks/datasets/evaluation.jsonl --report new-report --repeats 10
+# Exact local vocabulary count (explicit initial tokenizer download):
+tokenpropulsion benchmark --dataset benchmarks/datasets/evaluation.jsonl --tokenizer tiktoken --allow-tokenizer-download --report new-exact-report
 ```
 
-All endpoints require `Authorization: Bearer ...`: POST `/compress`, POST `/analyze`
-(JSON: `{"text":"Explain stars.   ","level":"medium"}`), GET `/health`, GET `/version`.
-Docs and OpenAPI endpoints are disabled. The entire encoded request body is limited
-to one megabyte before parsing, including chunked bodies. Compression/encoding is
-rejected. Prompts are not retained. Configure TLS, rate limits, access-log policy,
-request timeouts, and concurrency limits in your deployment proxy before exposure.
+Existing flat CLI arguments remain supported. Reports refuse nonempty destinations.
+REST: `tokenpropulsion.api.app.create_app(api_token=...)` requires an ASCII bearer token
+of at least 32 characters, limits input to 1 MB, rejects content encoding and extra JSON
+fields, uses a 10-second body timeout and a per-process request limiter. Deploy behind
+TLS, external concurrency limits and a shared rate limiter when using multiple workers.
+No prompts are persisted by the service itself; hosting logs remain operator-controlled.
 
-## Benchmarks and methodology
+## Optional xAI experiments
 
-The [academic engineering whitepaper](docs/whitepaper/TokenPropulsion-Whitepaper-v1.0.0rc1.pdf)
-contains exactly 10,000 counted body words, with references and editable Markdown source.
-It documents architecture, threat models, evaluation, local evidence, and unresolved limitations.
-It is an independent engineering paper, not a peer-reviewed publication.
+Official SDK sync/async requests expose provider usage, cached input tokens and reported
+cost when available. Live experiments require model selection, network permission,
+billing authorization and local reservation limits. No key or paid request was used for
+this release. Reservations are not a guaranteed provider-side spending cap; configure
+provider account limits. Retries can incur charges. See [experiment guidance](docs/research-v2.md).
 
 ```bash
-python -m tokenpropulsion benchmark --dataset benchmarks/datasets/sample.jsonl \
-  --repeats 10 -o benchmarks/results/local.json
-pytest --cov=tokenpropulsion --cov-report=term-missing
+tokenpropulsion benchmark --provider xai --model YOUR_REVIEWED_MODEL --compare --dataset benchmarks/datasets/remote_smoke.jsonl --allow-network --authorize-billing --budget-usd 0.10 --reserve-usd-per-request 0.01 --max-requests 10 --repeats 2
 ```
 
-The synthetic dataset covers nine task categories. The report compares unchanged
-input, deliberately simple whitespace normalization, and protected formatting.
-Dataset hashes identify input versions; timings are measured on the local machine
-and vary. Results contain IDs and metrics, without prompt text. Offline output quality,
-remote latency, real model-token reduction, and cost are explicitly null.
+Never use private production prompts in an unreviewed remote study. The optional judge
+is a separately authorized observation, cannot approve transformations, and may be wrong.
 
-`run_remote` supports repeated pairs, alternating order, task-specific evaluators,
-returned provider usage, failures, latency percentiles, and optional model-matched,
-dated/sourced pricing. It is an explicit Python API, never an automatic CLI upload.
-No prices are hardcoded. No live experiment or LLMLingua comparison is claimed.
-LLMLingua adds model/dependency and licensing considerations; an independent future
-comparison must record its version, model, hardware, license, and evaluator.
-See [evaluation limits](docs/evaluation.md) and the generated local report.
+## Validation and preserved history
 
-## Limitations and safety
+Run `pytest --cov=tokenpropulsion`, `ruff check .`, `ruff format --check .`, `mypy`,
+`bandit -r src`, `pip-audit`, `python -m build`, and `twine check dist/*`.
+CI covers Python 3.10-3.14. Full evidence and limitations are in [AUDIT](AUDIT/FINAL_TECHNICAL_AUDIT.md).
+The v1 paper, historical reports and v1 release remain intact; [historical README](docs/README-v1.0.0rc1.md)
+contains the original introduction. The 16:9 8K image is an upscaled export;
+[asset provenance](assets/README.md) records its native dimensions.
 
-- Protection is broad and heuristic, not a proof that all unrecognized syntax is safe.
-- Many inputs remain unchanged, and measured savings may be zero.
-- No semantic-equivalence assessment; all results say so explicitly.
-- No repeated word/instruction removal, model-based compression, or hierarchy rewriting.
-- The default estimate cannot establish billing savings. Provider usage can vary due
-  to caching, envelopes, reasoning, and model revisions.
-- Audit results contain prompts in memory. CLI JSON and explicit output files retain
-  them only when requested. No persistent history or logging is implemented.
-- The API is a single-process service component, not a complete public hosting platform.
-
-## Roadmap
-
-Task-validated redundancy rules, pluggable local model tokenizers, broader independent
-quality datasets, a pinned LLMLingua comparison, and live xAI compatibility gates.
-
-## Contributing
-
-See [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md).
-Changes to transformations need adversarial fixtures and evidence for their safety.
-
-## Security
-
-See [SECURITY](SECURITY.md). Do not put credentials or private prompts in issues.
-
-## License
-
-[MIT](LICENSE), copyright Ciprian Ștefan Pleșca. Optional libraries retain their own
-licenses; no third-party source code is vendored.
-
-## Author and acknowledgments
-
-Created by **Ciprian Ștefan Pleșca**. Thanks to the Python community and the maintainers
-of the optional official xAI SDK and the testing/build/security tools.
-
-## Independent project disclaimer
-
-TokenPropulsion is an independent community project. It is not affiliated with,
-endorsed by, or sponsored by xAI, SpaceX, or Elon Musk. Product and company names
-belong to their respective owners. Naming checks are preliminary, not legal clearance.
+MIT · Ciprian Ștefan Pleșca, Independent Developer & Researcher.
+Independent community project; no affiliation with xAI, SpaceX or Elon Musk.

@@ -34,6 +34,15 @@ class CompressionResult:
     fallback_triggered: bool
     semantic_equivalence_assessed: bool = False
 
+    strategy: str = "conservative"
+    validation_scope: str = "mechanical-only"
+    confidence: str = "unassessed"
+    count_kind: str = "heuristic"
+
+    @property
+    def saved_percent(self) -> float:
+        return self.tokens_saved_percent
+
     def restore(self) -> str:
         return self.original_text
 

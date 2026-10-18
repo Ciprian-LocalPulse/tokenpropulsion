@@ -20,7 +20,7 @@ def test_auth_and_endpoints():
     assert client.get("/health").status_code == 401
     client.headers["Authorization"] = "Bearer " + TOKEN
     assert client.get("/health").json() == {"status": "ok"}
-    assert client.get("/version").json()["version"] == "1.0.0rc1"
+    assert client.get("/version").json()["version"] == "2.0.0a1"
     assert client.get("/docs").status_code == 404
     assert client.get("/openapi.json").status_code == 404
     for endpoint in ["/compress", "/analyze"]:

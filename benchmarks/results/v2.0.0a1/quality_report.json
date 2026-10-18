@@ -1,0 +1,7 @@
+{
+  "quality_scope": "Deterministic declared synthetic tasks; no model outputs evaluated.",
+  "task_success_rate": 1.0,
+  "invalid_transformation_rate": 0.0,
+  "fallback_rate": 0.0,
+  "model_output_quality": null
+}

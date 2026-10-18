@@ -21,7 +21,7 @@ def test_basic(text, level):
     assert result.processing_seconds >= 0
     assert all(v.passed for v in result.validations)
     assert result.to_dict()["original_text"] == text
-    assert __version__ == "1.0.0rc1"
+    assert __version__ == "2.0.0a1"
 
 
 def test_profiles_and_audit():
