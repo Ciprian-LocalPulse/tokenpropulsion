@@ -85,7 +85,7 @@ tomli==2.5.0
 tomli_w==1.2.0
 tomlkit==0.15.2
 trove-classifiers==2026.9.21.13
-twine==6.2.0
+twine==7.0.0
 typing-inspection==0.4.4
 typing_extensions==4.16.0
 urllib3==2.8.0
