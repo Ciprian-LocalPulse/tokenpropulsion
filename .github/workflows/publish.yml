@@ -48,4 +48,4 @@ jobs:
           GH_REPO: ${{ github.repository }}
           RUN_ID: ${{ github.run_id }}
         run: gh run download "$RUN_ID" --name distributions --dir dist
-      - uses: pypa/gh-action-pypi-publish@f68fee44f9faa979857cda34894b750df5f571ca
+      - uses: pypa/gh-action-pypi-publish@291acab77c1c711c0667da4695ad2f428dcf00f3
